@@ -1,27 +1,22 @@
-import { useEffect } from 'react';
-import Form from 'components/Form/Form';
-import Contacts from 'components/Contacts/Contacts';
-import Filter from 'components/Filter/Filter';
-import css from './App.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/contacts/operations';
-import { selectIsLoading } from 'redux/selectors';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout';
+import NotFound from 'pages/NotFound';
+
+const Home = lazy(() => import('pages/Home'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
 
 export default function App() {
-  const dispatch = useDispatch()
-  const isLoading = useSelector(selectIsLoading);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-  return <div className={css.container}>
-    <h1>Phonebook</h1>
-    <Form />  
-    {isLoading && <p>Is Loading...</p>}
-    <div>
-      <h2>Contacts</h2>
-      <Filter/>
-      <Contacts/></div>
-    </div>
+  return <Routes>
+    <Route path='/' element={<Layout />} >
+      <Route index element={<Home />}></Route>
+      <Route path='contacts' element={<ContactsPage/>}></Route>
+      <Route path='login' element={<LoginPage />}></Route>
+      <Route path='register' element={<RegisterPage />}></Route>
+      <Route path='not-found' element={ <NotFound/>}></Route>
+    </Route>
+  </Routes>
 }
