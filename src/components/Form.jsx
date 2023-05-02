@@ -16,6 +16,7 @@ import {
 
 } from '@chakra-ui/react';
 import { ADDING } from 'redux/contacts/constants';
+import { Notify } from 'notiflix';
 
 export default function Form() {
   const [name, setName] = useState(''); 
@@ -47,7 +48,12 @@ export default function Form() {
     e.preventDefault();
 
     if (contacts.find(contact => contact.name === name)) {
-      alert(`${name} is already in contacts.`);
+      Notify.failure(`${name} is already in contacts.`);
+      return;
+    };
+
+    if (contacts.find(contact => contact.number === number)) {
+      Notify.failure(`Contact with number ${number} already exists.`);
       return;
     };
 

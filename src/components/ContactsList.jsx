@@ -29,7 +29,7 @@ export default function ContactsList() {
         emptyColor='gray.200'
         color='gray.400'
         size='xl'
-      /> : (error ? <Heading size='md' mt={8}>Oops, something went wrong :( </Heading> : (contacts.length === 0 ? <Heading size='md' mt={8}>You don't have contacts yet. Add one! </Heading>: (<Box h={360} w='100%' overflowY={'auto'} pr={4}><ul>
+      /> : (error ? <Heading h={360} size='md' mt={8}>Oops, something went wrong :( </Heading> : (contacts.length === 0 ? <Heading size='md' h={360} mt={8}>You don't have contacts yet. Add one! </Heading>: (<Box h={360} w='100%' overflowY={'auto'} pr={4}><ul>
         {filterContacts().map((contact) => <ContactItem contactsIdToDelete={contactsIdToDelete} setContactsIdToDelete={setContactsIdToDelete} key={contact.id} contact={contact} />)}
       </ul></Box>)))
     }
