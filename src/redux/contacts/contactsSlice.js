@@ -3,8 +3,9 @@ import { contactsInitialState } from './initialState';
 import { addContact, deleteContact, fetchContacts } from './operations';
 import { FETCHING, ADDING, DELETING } from './constants';
 
-const handleFetchContactsRejected = state => {
+const handleFetchContactsRejected = (state, action) => {
 	state.isLoading[FETCHING] = false;
+	state.error = action.payload;
 };
 const handleAddContactRejected = state => {
 	state.isLoading[ADDING] = false;
