@@ -1,6 +1,6 @@
 import { Box, Stack } from "@chakra-ui/react";
 import ContactsField from "components/ContactsField";
-import Form from "components/Form/Form";
+import Form from "components/Form";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/contacts/operations";

@@ -12,7 +12,7 @@ export default function ContactsList() {
 
     return filterValue === "" ?  contacts : filteredContacts;
   }
-  return <Box h={360} overflowY={'scroll'} pr={4}><ul>
+  return <Box h={360} overflowY={'auto'} pr={4}><ul>
     {filterContacts().map((contact) => <ContactItem key={contact.id} contact={contact } />)}
     </ul></Box>
 };

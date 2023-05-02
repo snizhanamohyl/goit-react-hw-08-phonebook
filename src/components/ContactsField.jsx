@@ -1,6 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
-import Filter from "./Filter/Filter";
-import ContactsList from "./ContactsList/ContactsList";
+import Filter from "./Filter";
+import ContactsList from "./ContactsList";
 
 export default function ContactsField() {
     return <Box w="100%" py={12} px={{base: 0, md: 6}}>

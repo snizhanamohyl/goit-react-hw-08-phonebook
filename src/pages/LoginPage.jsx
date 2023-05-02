@@ -16,12 +16,26 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/operations';
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    
+    const credentials = { email: form.elements.email.value, password: form.elements.password.value };
+    dispatch(login(credentials));
+
+    form.reset();
+  }
   return (
-      <form>
+    <form onSubmit={ handleSubmit}>
           <Flex
           minH={'100vh'}
       align={'center'}
