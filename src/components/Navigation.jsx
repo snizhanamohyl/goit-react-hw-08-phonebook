@@ -3,6 +3,7 @@ import { Box, HStack, IconButton, Stack, Link} from "@chakra-ui/react";
 
 import styled from '@emotion/styled';
 import { NavLink } from "react-router-dom";
+import PropTypes from 'prop-types'; 
 
 const StyledLink = styled(NavLink)`
   color: #000000;
@@ -59,3 +60,13 @@ export function NavigationMob({isOpen}) {
           </Box>
         ) : null}</>
 }
+
+NavigationMob.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+};
+
+Navigation.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+};

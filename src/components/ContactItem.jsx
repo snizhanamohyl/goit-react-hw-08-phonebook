@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DELETING } from "redux/contacts/constants";
 import { deleteContact } from "redux/contacts/operations";
 import { selectIsLoading } from "redux/selectors";
+import PropTypes from 'prop-types'; 
 
 export default function ContactItem({ contact,  contactsIdToDelete, setContactsIdToDelete}) {
   const { [DELETING]: isLoading } = useSelector(selectIsLoading);
@@ -32,3 +33,9 @@ export default function ContactItem({ contact,  contactsIdToDelete, setContactsI
         <IconButton size={'sm'} aria-label='Delete contact' onClick={onDelete} isDisabled={shouldDisable} icon={<CloseIcon />} />
     </Flex>
 }
+
+ContactItem.propTypes = {
+    contact: PropTypes.shape({name: PropTypes.string, phone: PropTypes.string}).isRequired,
+  contactsIdToDelete: PropTypes.arrayOf(PropTypes.string),
+    setContactsIdToDelete: PropTypes.func.isRequired,
+};
