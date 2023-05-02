@@ -13,6 +13,7 @@ import {
   // useColorModeValue,
   // createIcon,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -49,6 +50,8 @@ export default function Home() {
             alignSelf={'center'}
             position={'relative'}>
             <Button
+              as={Link}
+              to={'/contacts'}
               colorScheme={'green'}
               bg={'green.400'}
               rounded={'md'}

@@ -11,7 +11,7 @@ export default function UserMenu() {
     dispatch(logout())
   }
      return <Flex alignItems={'center'}> 
-         <Text fontSize='md' mr={4} display={{base: 'none', sm: 'inline'} }>{`Welcome, ${userName}`}</Text>
+       {userName && <Text fontSize='md' mr={4} display={{ base: 'none', sm: 'inline' }}>Welcome, <Text as={'span'} display={'inline'} fontWeight={500}>{ userName}</Text></Text>}
           <Button
                 to='/register'
             fontSize={'sm'}

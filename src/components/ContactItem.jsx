@@ -1,19 +1,26 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import { Avatar, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETING } from "redux/contacts/constants";
 import { deleteContact } from "redux/contacts/operations";
+import { selectIsLoading } from "redux/selectors";
 
-export default function ContactItem({ contact }) {
-    const dispatch = useDispatch();
-    const onDelete = ({ target }) => {
-        const id = target.parentElement.getAttribute('data-key');
-        dispatch(deleteContact(id));
-    }
+export default function ContactItem({ contact,  contactsIdToDelete, setContactsIdToDelete}) {
+  const { [DELETING]: isLoading } = useSelector(selectIsLoading);
+
+  const dispatch = useDispatch();
+  
+  const onDelete = () => {
+    setContactsIdToDelete((state)=> [...state, contact.id])
+      dispatch(deleteContact(contact.id));
+  }
+  
+  const shouldDisable = isLoading && contactsIdToDelete.find(id => id === contact.id);
     
-    return <Flex mt={6} align={'center'} data-key={contact.id } justify='space-between'>
+  return <Flex mt={6} align={'center'} justify='space-between'>
       <Flex >
           <Avatar
-            src={'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png'}
+          src={'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg'}
           alt={'Author'}
           mr={4}
           />
@@ -22,6 +29,6 @@ export default function ContactItem({ contact }) {
             <Text color={'gray.500'}>{contact.number}</Text>
         </Stack>
       </Flex>
-        <IconButton size={'sm'} aria-label='Delete contact' onClick={onDelete} icon={<CloseIcon />} />
+        <IconButton size={'sm'} aria-label='Delete contact' onClick={onDelete} isDisabled={shouldDisable} icon={<CloseIcon />} />
     </Flex>
 }

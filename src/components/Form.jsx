@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
+import { selectContacts, selectIsLoading } from 'redux/selectors';
 import { addContact } from 'redux/contacts/operations';
 
 import {
@@ -12,14 +12,18 @@ import {
   Button,
   Heading,
   useColorModeValue,
+  Spinner,
+
 } from '@chakra-ui/react';
+import { ADDING } from 'redux/contacts/constants';
 
 export default function Form() {
-    const [name, setName] = useState(''); 
+  const [name, setName] = useState(''); 
   const [number, setNumber] = useState(''); 
 
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const { [ADDING]: isLoading } = useSelector(selectIsLoading);
 
   const onChange = ({ target }) => {
     switch (target.name) {
@@ -49,15 +53,13 @@ export default function Form() {
 
     dispatch(addContact({name, number }));
     resetForm();
-    }
-    
+  }
 
-  return (
-      <form onSubmit={onSubmit}>
+  return (<form onSubmit={onSubmit}>
       <Stack mx='auto' spacing={8} maxW={'lg'} py={12} pb={{base: 0, md: 12}} px={{base: 0, md: 6}} minW={'35vw'}>
         <Stack align={'center'}>
           <Heading fontSize={'3xl'} textAlign={'center'}>
-            Add contact
+            New contact
           </Heading>
         </Stack>
         <Box
@@ -93,14 +95,13 @@ export default function Form() {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
-                loadingText="Submitting"
                 size="lg"
                 bg={'green.400'}
                 color={'white'}
                 _hover={{
                   bg: 'green.500',
-                }} type='submit'>
-                Add
+                }} isDisabled={isLoading} type='submit'>
+                 {isLoading ? <>Adding<Spinner speed='0.9s' size={'sm'} ml={4}/></> : 'Add contact'}
               </Button>
             </Stack>
           </Stack>

@@ -1,5 +1,11 @@
+import { FETCHING, ADDING, DELETING } from './constants';
+
 export const contactsInitialState = {
-  items: [],
-  isLoading: false,
-  error: null,
+	items: [],
+	isLoading: {
+		[FETCHING]: false,
+		[ADDING]: false,
+		[DELETING]: false,
+	},
+	error: null,
 };

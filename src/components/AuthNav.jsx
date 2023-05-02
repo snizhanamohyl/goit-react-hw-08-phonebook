@@ -14,7 +14,7 @@ export function AuthNav () {
             fontSize={'md'}
             fontWeight={400}
             variant={'link'}>
-            Login
+            Log In
           </Button>
           <Button
                 as={NavLink}
