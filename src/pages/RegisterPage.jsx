@@ -25,7 +25,6 @@ export default function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    console.log("🚀 ~ file: RegisterPage.jsx:29 ~ handleSubmit ~ form.elements.name.value:", {name: form.elements.name.value, email: form.elements.email.value, password: form.elements.password.value})
     dispatch(register({name: form.elements.name.value, email: form.elements.email.value, password: form.elements.password.value}))
     
     form.reset();
