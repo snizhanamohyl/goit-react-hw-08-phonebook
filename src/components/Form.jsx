@@ -32,7 +32,8 @@ export default function Form() {
         setName(target.value);
         break;
       case 'number':
-        setNumber(target.value);
+        if (target.value.length >12) return;
+        setNumber(normalizeNumber(target.value));
         break;
       default:
         break;
@@ -59,6 +60,12 @@ export default function Form() {
 
     dispatch(addContact({name, number }));
     resetForm();
+  }
+
+  const normalizeNumber = (value) => {
+    const x = value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      const normalizedNumber = x[1] + (x[2] ? '-' + x[2] : '') + (x[3] ? '-' + x[3] : '');
+      return normalizedNumber;
   }
 
   return (<form onSubmit={onSubmit}>
@@ -92,8 +99,8 @@ export default function Form() {
               <Input
             type="tel"
             name="number"
-                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                placeholder='308-666-4813'
+              placeholder='308-666-4813'
+              minLength='12'
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
