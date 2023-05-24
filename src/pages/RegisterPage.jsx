@@ -16,11 +16,13 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { selectAuthIsLoading } from 'redux/selectors';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectAuthIsLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,13 +81,13 @@ export default function RegisterPage() {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
-                loadingText="Submitting"
-                size="lg"
-                bg={'green.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'green.500',
-                }} type='submit'>
+                  loadingText="Submitting"
+                  size="lg"
+                  bg={'green.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'green.500',
+                  }} type='submit' isDisabled={ isLoading}>
                 Sign up
               </Button>
             </Stack>

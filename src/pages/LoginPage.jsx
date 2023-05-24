@@ -16,11 +16,13 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/operations';
+import { selectAuthIsLoading } from 'redux/selectors';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectAuthIsLoading);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -76,20 +78,19 @@ export default function LoginPage() {
               </InputGroup>
             </FormControl>
             <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
+                <Button  
                 size="lg"
                 bg={'green.400'}
                 color={'white'}
                 _hover={{
                   bg: 'green.500',
-                }} type='submit'>
-                Log In
+                }} type='submit' isDisabled={isLoading}  >
+                  Log In
               </Button>
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                              Not a user yet? <Link as={ NavLink} to='/register' color={'green.400'}>Sign Up</Link>
+                Not a user yet? <Link as={ NavLink} to='/register' color={'green.400'}>Sign Up</Link>
               </Text>
             </Stack>
           </Stack>

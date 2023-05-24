@@ -3,11 +3,11 @@ import { Avatar, Flex, IconButton, Stack, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETING } from "redux/contacts/constants";
 import { deleteContact } from "redux/contacts/operations";
-import { selectIsLoading } from "redux/selectors";
+import { selectContactsIsLoading } from "redux/selectors";
 import PropTypes from 'prop-types'; 
 
 export default function ContactItem({ contact,  contactsIdToDelete, setContactsIdToDelete}) {
-  const { [DELETING]: isLoading } = useSelector(selectIsLoading);
+  const { [DELETING]: isLoading } = useSelector(selectContactsIsLoading);
 
   const dispatch = useDispatch();
   

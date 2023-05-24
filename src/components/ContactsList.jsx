@@ -3,12 +3,12 @@ import ContactItem from 'components/ContactItem';
 import { useState } from 'react';
 import {  useSelector } from 'react-redux';
 import { FETCHING } from 'redux/contacts/constants';
-import { selectContacts, selectError, selectFilter, selectIsLoading } from 'redux/selectors';
+import { selectContacts, selectError, selectFilter, selectContactsIsLoading } from 'redux/selectors';
 
 export default function ContactsList() {
   const [contactsIdToDelete, setContactsIdToDelete] = useState([]);
 
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectError);
   const contacts = useSelector(selectContacts);
   const filterValue = useSelector(selectFilter);

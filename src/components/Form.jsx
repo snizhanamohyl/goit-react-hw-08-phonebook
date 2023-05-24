@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectIsLoading } from 'redux/selectors';
+import { selectContacts, selectContactsIsLoading } from 'redux/selectors';
 import { addContact } from 'redux/contacts/operations';
 
 import {
@@ -24,7 +24,7 @@ export default function Form() {
 
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const { [ADDING]: isLoading } = useSelector(selectIsLoading);
+  const { [ADDING]: isLoading } = useSelector(selectContactsIsLoading);
 
   const onChange = ({ target }) => {
     switch (target.name) {

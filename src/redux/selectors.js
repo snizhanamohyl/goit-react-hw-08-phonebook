@@ -6,7 +6,9 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 
 export const selectContacts = state => state.contacts.items;
 
-export const selectIsLoading = state => state.contacts.isLoading;
+export const selectContactsIsLoading = state => state.contacts.isLoading;
+
+export const selectAuthIsLoading = state => state.auth.isLoading;
 
 export const selectError = state => state.contacts.error;
 
