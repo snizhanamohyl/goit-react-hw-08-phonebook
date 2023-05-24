@@ -21,8 +21,7 @@ export default function ContactItem({ contact,  contactsIdToDelete, setContactsI
   return <Flex mt={6} align={'center'} justify='space-between'>
       <Flex >
           <Avatar
-          src={'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg'}
-          alt={'Author'}
+          alt={'Contact Photo'}
           mr={4}
           />
           <Stack direction={'column'} spacing={0} fontSize={'sm'}>
